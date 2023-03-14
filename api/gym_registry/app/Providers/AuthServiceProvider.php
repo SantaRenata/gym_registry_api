@@ -34,6 +34,13 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
+        Gate::define("create-user",function(User $user){
+            if($user->role===1){
+                return true;
+            }
+        });
+        
+
         Gate::define("manage-discount",function(User $user){
             if($user->role===1){
                 return true;

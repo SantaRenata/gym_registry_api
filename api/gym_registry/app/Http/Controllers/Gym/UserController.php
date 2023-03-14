@@ -18,18 +18,18 @@ class UserController extends BaseController
         return $this->sendResponse(UserResource::collection($users), "OK");
     }
 
-    // public function addAdmin(Request $request){
-    //     $this->authorize("create-user");
+    public function addAdmin(Request $request){
+        $this->authorize("create-user");
+        
+        $user = User::forceCreate([
+            'name'=> $request->input("name"), 
+            'email'=> $request->input("email"), 
+            'password'=> bcrypt($request->input("password")),
+            'role'=> 1
+        ]);
 
-    //     $user = User::create([
-    //         'name'=> $request->input("name"), 
-    //         'email'=> $request->input("email"), 
-    //         'password'=> bcrypt("admin"), 
-    //         'role'=> $request->input("role"),
-    //     ]);
-
-    //     return $this->sendResponse($user,"Felhasználó hozzáadva");
-    // }
+        return $this->sendResponse($user,"Felhasználó hozzáadva");
+    }
 
     public function show($id){
         $user = User::find($id);

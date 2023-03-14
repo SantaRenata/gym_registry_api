@@ -18,7 +18,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     
     //Admin
     Route::delete("/user/{id}", [UserController::class, "destroy"]);
-    // Route::post("/user",[UserController::class,"addAdmin"]);
+    Route::post("/user",[UserController::class,"addAdmin"]);
     
     Route::post("/discount",[DiscountController::class,"createDiscount"]);
     Route::put("/discount/{id}",[DiscountController::class,"updateDiscount"]);
