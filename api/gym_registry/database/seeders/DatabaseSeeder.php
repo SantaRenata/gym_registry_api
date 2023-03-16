@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
             DB::table("regions")->truncate();
             DB::table("city_regions")->truncate();
+            DB::table("users")->where("name", "=", "admin")->delete();
         Schema::enableForeignKeyConstraints();
 
         $this->call([

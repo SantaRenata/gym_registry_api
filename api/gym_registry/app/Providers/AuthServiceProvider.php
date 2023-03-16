@@ -59,5 +59,14 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
+        Gate::define("show-pass",function(User $user){
+            if($user->role===1){
+                return true;     
+            }else{
+                $user = Auth::user();
+                return $user;
+            }
+        });
+
     }
 }

@@ -14,7 +14,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function() {
     
     Route::put("/user/{id}",[UserController::class, "update"]);
 
-    Route::get("/user/{id}",[PassController::class,"indexPass"]);
+    Route::get("/userPass/{id}",[PassController::class,"indexPass"]);
     
     //Admin
     Route::delete("/user/{id}", [UserController::class, "destroy"]);

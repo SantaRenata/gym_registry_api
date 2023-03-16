@@ -8,20 +8,20 @@ use App\Models\Pass;
 use App\Models\User;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class PassController extends BaseController
 {
-    public function indexPass(User $user, $id){
-        //még nem működik
+    public function indexPass(User $user,$id){
+        $this->authorize("show-pass");
         
-        // $user = Auth::user();    
-
-        // if(Auth::check() && Auth::user()->role == true){
-        //     $pass = Pass::find($id);
-        // }
-
-        // return $this->sendResponse($pass);
+        if(Auth::check() && Auth::user()->role == true){
+            $user = User::find($id);
+        }else{
+            $user = Auth::user();
+        }
+        return $this->sendResponse($user);
     }
 
     public function createPass(Request $request){
